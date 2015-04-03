@@ -1,12 +1,10 @@
 var gulp = require('gulp');
 var header = require('gulp-header');
-var footer = require('gulp-footer');
 var gutil = require('gulp-util');
 var colors = gutil.colors;
 var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
 var beautify = require('gulp-js-beaut');
-var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var cached = require('gulp-cached');
@@ -142,7 +140,6 @@ function watchFatory(srcPath, taskName, cacheName) {
     watcher.on('change', function (event) {
         var relativePath = path.relative(path.resolve('.'), event.path);
         log("File %s was %s, running tasks...", colors.magenta(relativePath), colors.cyan(event.type));
-        log(event.path);
         if (event.type === 'deleted') {
             try{
                 delete cached.caches[cacheName][event.path];
